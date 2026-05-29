@@ -6,6 +6,38 @@ You are in the right place. This repository is a **step-by-step kit** for buildi
 
 ---
 
+## Parts to order (shopping list)
+
+Order or gather these **before** you start building. Check each box when it arrives. Amazon links are the ones used for this project; equivalent parts are fine if the specs match.
+
+| | Part | Qty | Notes |
+|---|------|:---:|-------|
+| ☐ | **Benewake waterproof TFmini LiDAR** | 1 | 4-wire UART rangefinder | [Amazon](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
+| ☐ | **Seeed XIAO ESP32-S3** | 1 | Includes snap-on **U.FL WiFi antenna** | [Amazon](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
+| ☐ | **DC buck converter** (12 V → 5 V) | 1 | Adjust to **5.00 V** output; one unit powers everything | [Amazon](https://www.amazon.com/dp/B0F1WB3LJ5) |
+| ☐ | **MOSFET switch module** | 1 | Switches LiDAR power for sleep mode | [Amazon](https://www.amazon.com/dp/B0DZP27C2N) |
+| ☐ | **Wire** (main harness) | 1 roll | Gauge suited to your truck run length | [Amazon](https://www.amazon.com/dp/B0C5T5G2NH) |
+| ☐ | **3D-printed case (v3)** | 1 | Free file: [`docs/v3 Case.step`](docs/v3%20Case.step) — print yourself or use a print service | In this repo |
+| ☐ | **2 mm screws** | 4+ | Mount LiDAR to case (length ≈ 6–12 mm for your print) | Hardware store |
+
+**Also pick up (not on Amazon list above)**
+
+| | Item | Why |
+|---|------|-----|
+| ☐ | Solder, soldering iron, heat-shrink | Wire joints — [tools list](docs/ASSEMBLY.md#3-tools-and-supplies) |
+| ☐ | **USB-C data cable** | Flash firmware (not charge-only) |
+| ☐ | **Multimeter** | Verify 5 V before you power the boards |
+| ☐ | **Silicone sealant** (clear outdoor / 100% silicone) | Seal lid gaps and wire exit |
+| ☐ | **Hot glue gun** + sticks | Optional extra sealing / strain relief |
+| ☐ | **Inline fuse** + holder (12 V) | Strongly recommended on truck power |
+| ☐ | Filament (PETG or ASA) | If you print the case yourself |
+
+Full detail and optional items: [Assembly guide §4 — Bill of materials](docs/ASSEMBLY.md#4-bill-of-materials)
+
+**When parts arrive →** start the [build path](#the-build-path--follow-in-order) at step **0**.
+
+---
+
 ## What you are making (30 seconds)
 
 A waterproof LiDAR measures distance to your trailer. A **Seeed XIAO ESP32-S3** board sends that distance over **Bluetooth** to your phone. Everything runs from your truck’s **12 V** power, converted to safe **5 V** inside the box. You will **solder wires**, **print a plastic case**, and **plug the board into your computer once** to load the firmware.
@@ -16,7 +48,7 @@ A waterproof LiDAR measures distance to your trailer. A **Seeed XIAO ESP32-S3** 
 
 | You will need to… | Notes |
 |-------------------|--------|
-| **Order parts** | Amazon links in the [parts list](docs/ASSEMBLY.md#4-bill-of-materials) |
+| **Order parts** | [Shopping list above](#parts-to-order-shopping-list) |
 | **3D-print a case** | Free model file included; needs a printer or a print service |
 | **Solder** | Every wire joint is soldered — first time is OK, go slow |
 | **Use a computer once** | Mac or Windows, USB-C cable, internet to install one tool |
@@ -57,7 +89,7 @@ Check off each step. **Next** links take you to the right document and section.
 | Step | What you do | Open this next |
 |:----:|-------------|----------------|
 | **0** | Understand the project and risks | → [Safety & tools](docs/ASSEMBLY.md#2-safety) |
-| **1** | Buy / gather all parts | → [Bill of materials](docs/ASSEMBLY.md#4-bill-of-materials) |
+| **1** | Buy / gather all parts | → [Shopping list above](#parts-to-order-shopping-list) · [Full BOM](docs/ASSEMBLY.md#4-bill-of-materials) |
 | **2** | See what connects to what (read before soldering) | → [Wiring diagram](docs/wiring-diagram.md) |
 | **3** | Print the enclosure | → [Print the v3 case](docs/ASSEMBLY.md#3d-printing-the-case) |
 | **4** | Snap on WiFi antenna, then solder the harness | → [Soldering steps](docs/ASSEMBLY.md#7-soldering-the-harness) |
@@ -77,9 +109,9 @@ Check off each step. **Next** links take you to the right document and section.
 
 Open **[docs/ASSEMBLY.md — section 1](docs/ASSEMBLY.md#1-what-you-are-building)** and read sections **1 (what you are building)** and **2 (safety)**.
 
-Then continue to **section 3 (tools)** and **section 4 (parts list)** — order anything you do not have.
+Then continue to **section 3 (tools)**. Order anything missing from the [shopping list above](#parts-to-order-shopping-list).
 
-**Next:** [Bill of materials →](docs/ASSEMBLY.md#4-bill-of-materials)
+**Next:** [Wiring diagram →](docs/wiring-diagram.md)
 
 ---
 
