@@ -1,8 +1,28 @@
 # GooseEye hardware assembly guide
 
+> **Start on GitHub?** Open the [README start-here path](../README.md#the-build-path--follow-in-order) first, then return here for detail.
+
 This guide walks you through building the GooseEye truck-bed distance sensor from scratch. **You will solder wires** — there are no pre-made harness connectors in the bill of materials. Take your time; bad joints cause intermittent power and UART failures.
 
 The companion mobile app is **not** in this repository. This repo is firmware + hardware only.
+
+### Guide map (in order)
+
+| § | Topic | Jump |
+|---|--------|------|
+| 1 | What you are building | [Below](#1-what-you-are-building) |
+| 2 | Safety | [§2](#2-safety) |
+| 3 | Tools | [§3](#3-tools-and-supplies) |
+| 4 | Parts to buy | [§4](#4-bill-of-materials) |
+| 5 | Voltages | [§5](#5-voltage-and-current) |
+| 6 | Wiring overview | [§6](#6-wiring-overview) → [full diagram](wiring-diagram.md) |
+| 7 | Soldering | [§7](#7-soldering-the-harness) |
+| 8 | Bench test | [§8](#8-bench-test-before-truck-install) |
+| 9 | 3D print & case | [§9](#9-enclosure-assembly-v3-case) |
+| 10 | Flash firmware | [§10](#10-flash-firmware) |
+| 11 | Test Bluetooth | [§11](#11-verify-ble) |
+| 12 | Truck install | [§12](#12-truck-installation) |
+| 13 | Troubleshooting | [§13](#13-troubleshooting) |
 
 ---
 
@@ -11,6 +31,8 @@ The companion mobile app is **not** in this repository. This repo is firmware + 
 A waterproof Benewake TFmini-class LiDAR talks to a Seeed XIAO ESP32-S3 over UART. The ESP32 advertises distance over Bluetooth Low Energy (BLE) as **GooseEye**. A 12 V → 5 V buck converter powers the board from the truck; a MOSFET module switches LiDAR power off when the firmware sleeps to save energy.
 
 Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step)): the LiDAR bolts on with **2 mm screws**, the buck and MOSFET are fitted loosely inside, and the truck harness exits the **bottom**. The **lid** is the face that mounts **against the truck bed**.
+
+**Next:** [§2 Safety →](#2-safety)
 
 ---
 
@@ -21,6 +43,8 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 - The LiDAR is a Class 1 eye-safe laser product when used as specified; do not stare into the aperture at close range.
 - **ESD:** touch a grounded metal surface before handling the XIAO or LiDAR PCB.
 - **5 V only** on the XIAO power pad and LiDAR VCC. **Never connect 12 V** to the ESP32 or sensor.
+
+**Next:** [§3 Tools & supplies →](#3-tools-and-supplies)
 
 ---
 
@@ -38,6 +62,8 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 | Optional: helping hands, flux, isopropyl alcohol | Easier soldering and cleanup |
 | **2 mm** screwdriver or hex driver | LiDAR screws into case |
 | Calipers / CAD viewer | Check printed case against STEP model |
+
+**Next:** [§4 Parts list (order these) →](#4-bill-of-materials)
 
 ---
 
@@ -61,6 +87,8 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 
 Add photos of your finished build in `docs/images/` when you have them.
 
+**Next:** [§5 Voltages →](#5-voltage-and-current) · [Wiring diagram (read before soldering) →](wiring-diagram.md)
+
 ---
 
 ## 5. Voltage and current
@@ -75,6 +103,8 @@ Add photos of your finished build in `docs/images/` when you have them.
 
 **Current budget (planning):** ESP32-S3 + BLE ~100–250 mA peaks; TFmini ~100–300 mA peaks. Size the buck for **≥ 1 A** continuous on the 5 V output with headroom.
 
+**Next:** [§6 Wiring overview →](#6-wiring-overview)
+
 ---
 
 ## 6. Wiring overview
@@ -88,6 +118,8 @@ Summary:
 - **LiDAR red** only to MOSFET switched output (not direct to buck).
 - **UART:** XIAO D9 → white, D10 ← green.
 - **Control:** XIAO D1 → MOSFET `IN`.
+
+**Next:** Open [wiring-diagram.md](wiring-diagram.md), then [§7 Soldering →](#7-soldering-the-harness)
 
 ---
 
@@ -153,12 +185,14 @@ Do not swap D9 and D10 — distance readings will fail.
 - Heat-shrink every exposed conductor.
 - Verify **no short** between 5 V and GND with multimeter beep test before applying power.
 
+**Next:** [§8 Bench test →](#8-bench-test-before-truck-install) · or print case first: [§9 Print enclosure →](#3d-printing-the-case)
+
 ---
 
 ## 8. Bench test (before truck install)
 
 1. **Power off.** Connect USB-C to the XIAO for flashing only; truck 12 V can stay disconnected for first flash.
-2. Flash firmware (Section 10).
+2. Flash firmware — [§10](ASSEMBLY.md#10-flash-firmware) or [README script walkthrough](../README.md#running-the-flash-script-first-timers).
 3. Open serial monitor at **115200** baud. Expect:
    - `[GooseEye] boot`
    - `[GooseEye] advertising as GooseEye`
@@ -168,6 +202,8 @@ Do not swap D9 and D10 — distance readings will fail.
 5. **Sleep test:** disconnect BLE or wait ~2 s without session keep-alive. Serial should log `lidar power off`; multimeter on LiDAR red–black should drop to ~0 V. Reconnect with session `0x01` written to wake.
 
 Flash firmware (Section 10) **before** closing the enclosure if you need USB access to the XIAO.
+
+**Next:** [§9 Print & assemble case →](#9-enclosure-assembly-v3-case) · [§10 Flash firmware →](#10-flash-firmware)
 
 ---
 
@@ -227,23 +263,45 @@ Route the soldered harness so the **main wire exits through the bottom** of the 
 2. Close the **lid** (truck-bed side) and fasten per your print design (screws, clips, or sealant — follow whatever features are in your manufactured part).
 3. Mount the assembly to the bed with the **lid against the truck** and the LiDAR facing the trailer.
 
+**Next:** [§10 Flash firmware →](#10-flash-firmware) (if not done yet) · [README script help →](../README.md#running-the-flash-script-first-timers)
+
 ---
 
 ## 10. Flash firmware
 
+This step **puts the GooseEye program on the XIAO**. You are not writing code — you install one free tool, then run the included script (or copy the commands from the [README](../README.md#running-the-flash-script-first-timers)).
+
+**Before you start:** XIAO plugged in with a **USB-C data cable** (chargers-only cables will not work).
+
 ### Install PlatformIO
 
-- macOS: `brew install platformio`
-- Other: [PlatformIO CLI install](https://platformio.org/install/cli)
+**PlatformIO** is a command-line tool that compiles and uploads firmware. Install it once per computer.
+
+| Computer | What to do |
+|----------|------------|
+| **Mac** | Open Terminal. If you have [Homebrew](https://brew.sh): run `brew install platformio`. If not, use the [PlatformIO installer](https://platformio.org/install/cli). |
+| **Windows** | Download and run the installer from [platformio.org/install/cli](https://platformio.org/install/cli). Close and reopen PowerShell after install. |
+
+**Check it worked:** open Terminal or PowerShell and type:
+
+```bash
+pio --version
+```
+
+You should see a version number, not “command not found.”
 
 ### Upload
 
-From the **repository root** (this folder):
+**Easiest path:** follow [README — Running the flash script](../README.md#running-the-flash-script-first-timers) (copy-paste friendly).
+
+**Or**, from the **repository root** folder (the one that contains `scripts/` and `docs/`):
 
 ```bash
 chmod +x scripts/flash-firmware.sh
 ./scripts/flash-firmware.sh
 ```
+
+(`chmod` is Mac/Linux only — tells the computer the script is allowed to run.)
 
 macOS port is usually `/dev/cu.usbmodem*`. Override if needed:
 
@@ -251,23 +309,29 @@ macOS port is usually `/dev/cu.usbmodem*`. Override if needed:
 UPLOAD_PORT=/dev/cu.usbmodem143201 ./scripts/flash-firmware.sh
 ```
 
-Windows: use Device Manager to find `COMx`, then:
+Windows: open **Device Manager** → **Ports (COM & LPT)** → note **COM5** (example), then in PowerShell from the repo folder:
 
-```cmd
-set UPLOAD_PORT=COM5
-scripts\flash-firmware.sh
+```powershell
+cd firmware
+pio run -t upload --upload-port COM5
 ```
 
 ### Serial monitor
+
+Optional — shows text logs from the board:
 
 ```bash
 cd firmware
 pio device monitor
 ```
 
+Press `Ctrl+C` to exit. You should see `[GooseEye] boot`.
+
 ### Bootloader mode
 
 If upload fails: double-tap the XIAO **RESET** button quickly; the board enters USB bootloader mode. Retry upload.
+
+**Next:** [§11 Verify BLE on your phone →](#11-verify-ble)
 
 ---
 
@@ -279,6 +343,8 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 4. Write **`0x01`** to the Session characteristic (`...0007...`) to keep the device awake (see [ble-protocol.md](ble-protocol.md)).
 5. Wave a hand in front of the LiDAR; distance notifications should update.
 
+**Next:** [§9 Enclosure →](#9-enclosure-assembly-v3-case) if not built yet · [§12 Truck install →](#12-truck-installation)
+
 ---
 
 ## 12. Truck installation
@@ -288,6 +354,8 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 3. Route wiring away from exhaust, heat, and moving parts.
 4. Re-check **5 V** under load with the engine on (alternator may raise rail voltage).
 5. After sealing the case, firmware updates require USB access to the XIAO — plan ahead or open the enclosure.
+
+**Next:** [§13 Troubleshooting →](#13-troubleshooting) · [Back to README start →](../README.md)
 
 ---
 
@@ -334,4 +402,6 @@ Firmware version is in `firmware/platformio.ini` (`FIRMWARE_VERSION_*`).
 
 - Add photos of your printed case and bed mount to `docs/images/`.
 - Integrate with the GooseEye mobile app (distributed separately).
-- Report hardware issues on the project GitHub tracker.
+- Report hardware issues on the [GitHub issue tracker](https://github.com/cjevolutions/GooseEye/issues).
+
+**Back to top:** [README — start here →](../README.md)

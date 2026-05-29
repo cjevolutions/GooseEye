@@ -1,5 +1,13 @@
 # GooseEye wiring diagram
 
+> **Where am I?** This is **step 2** on the [README build path](../README.md#the-build-path--follow-in-order). Read it **before** you solder, then continue to [§7 Soldering](ASSEMBLY.md#7-soldering-the-harness).
+
+Keep this page open on a phone or second monitor while you wire the harness.
+
+**Previous:** [Parts list](ASSEMBLY.md#4-bill-of-materials) · **Next:** [Print case](ASSEMBLY.md#3d-printing-the-case) or [Soldering](ASSEMBLY.md#7-soldering-the-harness)
+
+---
+
 ## Block diagram
 
 ```mermaid
