@@ -142,7 +142,7 @@ Do not swap D9 and D10 — distance readings will fail.
 ## 8. Bench test (before truck install)
 
 1. **Power off.** Connect USB-C to the XIAO for flashing only; truck 12 V can stay disconnected for first flash.
-2. Flash firmware (Section 9).
+2. Flash firmware (Section 10).
 3. Open serial monitor at **115200** baud. Expect:
    - `[GooseEye] boot`
    - `[GooseEye] advertising as GooseEye`
@@ -151,15 +151,23 @@ Do not swap D9 and D10 — distance readings will fail.
    - Connect a phone BLE scanner; see **GooseEye** advertising.
 5. **Sleep test:** disconnect BLE or wait ~2 s without session keep-alive. Serial should log `lidar power off`; multimeter on LiDAR red–black should drop to ~0 V. Reconnect with session `0x01` written to wake.
 
-Flash firmware (Section 9) **before** closing the enclosure if you need USB access to the XIAO.
+Flash firmware (Section 10) **before** closing the enclosure if you need USB access to the XIAO.
 
 ---
 
 ## 9. Enclosure assembly (v3 case)
 
-The truck-bed housing is provided as a STEP model: **[`docs/v3 Case.step`](v3%20Case.step)**. Import it into your slicer, CAM, or CAD tool to print or machine the case. The model name in the file is **v3 Case**.
+The truck-bed housing is provided as a STEP model: **[`docs/v3 Case.step`](v3%20Case.step)** (model name **v3 Case**).
 
-### Orientation
+### 3D printing the case
+
+1. Open your slicer (PrusaSlicer, Bambu Studio, Cura, etc.).
+2. **Drag `v3 Case.step` into the slicer window** (or use File → Import). Most slicers accept STEP directly; if yours does not, open the file in a CAD tool and export STL first.
+3. **Print orientation:** place the case so the **opening faces down onto the build plate** (bottom/wire-exit opening on the plate, LiDAR end pointing up). This minimizes overhangs on the rim and gives a flat, strong base for the lid seat.
+4. Use your normal filament settings for an outdoor truck-bed part (e.g. PETG or ASA for heat and UV). Add brim or arachne on the opening lip if your slicer shows curling.
+5. Remove supports, deburr the LiDAR screw bosses and wire exit, then dry-fit the LiDAR before soldering the harness.
+
+### Orientation (installed on the truck)
 
 | Part | Role |
 |------|------|
