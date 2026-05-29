@@ -4,7 +4,7 @@ If you clicked **`v3 Case.step`** on GitHub and saw **thousands of lines of text
 
 **What you actually do:** save the file to your computer, open a **3D printer slicer** app, drag the file in, and print the plastic box (or send the file to a print shop).
 
-**Previous:** [Shopping list](../README.md#parts-to-order-shopping-list) · **Next:** [Soldering](ASSEMBLY.md#7-soldering-the-harness)
+**Previous:** [Requirements — need a printer or print service](../README.md#requirements-read-this-before-ordering-parts) · **Next:** [Soldering](ASSEMBLY.md#7-soldering-the-harness)
 
 ---
 

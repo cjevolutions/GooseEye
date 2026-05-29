@@ -2,13 +2,57 @@
 
 You are in the right place. This repository is a **step-by-step kit** for building the GooseEye truck-bed distance sensor: a small box with a laser rangefinder and a Bluetooth chip that talks to the GooseEye phone app (the app is **not** in this repo).
 
-**You do not need** prior experience with GitHub, soldering, programming, or running scripts. Follow the numbered path below in order. Each step links to the **next** one.
+**You do not need** prior experience with GitHub or programming. You **do** need the capabilities below — read them **before** you buy parts.
+
+---
+
+## Requirements (read this before ordering parts)
+
+If you cannot check off every **must have** row, finish that gap first or this build will stall halfway.
+
+### Must have
+
+| Requirement | What it means for you |
+|-------------|------------------------|
+| **A 3D-printed enclosure** | The sensor box is **not** sold ready-made. You get a free computer model ([`v3 Case.step`](docs/v3%20Case.step)) and must produce a physical plastic case using **one** of the options below. |
+| **3D printer *or* print service** | **Option A — Own printer:** FDM printer (Bambu, Prusa, Creality, etc.), slicer software, and filament (**PETG** or **ASA** recommended for sun/heat in a truck bed). **Option B — No printer:** Upload the file to an online print service (e.g. [Craftcloud](https://craftcloud3d.com/)) or a local makerspace/library and pay someone to print it. Budget roughly **$15–60 USD** for a service print, plus shipping and wait time. → **[How to print the case](docs/PRINT-THE-CASE.md)** |
+| **Soldering** | Every wire between the truck power, converter, ESP32, MOSFET, and LiDAR is **soldered**. You need a soldering iron, solder, and heat-shrink (or tape). First-time solderers can do this — plan a slow evening. |
+| **Computer (once)** | Mac or Windows PC with internet, to install **PlatformIO** and run **one copy-paste command** that loads firmware onto the ESP32. A **USB-C data cable** (not charge-only) connects the board to the PC. |
+| **Truck 12 V power** | A fused tap on the vehicle **12 V** accessory/battery circuit to feed the buck converter. Wiring with the **engine off** for the first hookup. |
+| **Smartphone with Bluetooth** | To test the sensor (free apps: **nRF Connect** or **LightBlue**). The GooseEye **phone app** is separate from this repo but is what you use day-to-day when driving. |
+| **Basic hand tools** | Wire stripper, screwdriver for **2 mm** LiDAR screws, multimeter strongly recommended. |
+
+### Strongly recommended
+
+| Item | Why |
+|------|-----|
+| **Inline fuse** on 12 V | Protects the truck wiring if something shorts |
+| **Silicone sealant** + optional **hot glue gun** | Seals lid gaps and the wire exit against rain/dust |
+| **Help or a second pair of hands** | Holding wires while soldering is easier with two people |
+
+### You do **not** need
+
+- A GitHub account (you can download a ZIP)
+- Programming experience (no code to write)
+- A machine shop or CNC (printing is enough)
+- To understand the text inside the `.step` file ([that is not code](docs/PRINT-THE-CASE.md))
+
+### Time and cost (rough planning)
+
+| | Estimate |
+|---|----------|
+| **Your time** | One **weekend** if new to soldering; faster if experienced |
+| **Amazon electronics** | About **$80–150 USD** depending on what you already own |
+| **Case** | Filament + electricity if self-printed; **$15–60+** if using a print service |
+| **Tools one-time** | Iron + solder + multimeter if you do not own them |
+
+**Ready?** Continue to the [parts shopping list](#parts-to-order-shopping-list) below, then the [build path](#the-build-path--follow-in-order).
 
 ---
 
 ## Parts to order (shopping list)
 
-Order or gather these **before** you start building. Check each box when it arrives. Amazon links are the ones used for this project; equivalent parts are fine if the specs match.
+Order these **after** the [requirements](#requirements-read-this-before-ordering-parts) above make sense for you. Check each box when it arrives.
 
 | | Part | Qty | Notes |
 |---|------|:---:|-------|
@@ -17,7 +61,7 @@ Order or gather these **before** you start building. Check each box when it arri
 | ☐ | **DC buck converter** (12 V → 5 V) | 1 | Adjust to **5.00 V** output; one unit powers everything | [Amazon](https://www.amazon.com/dp/B0F1WB3LJ5) |
 | ☐ | **MOSFET switch module** | 1 | Switches LiDAR power for sleep mode | [Amazon](https://www.amazon.com/dp/B0DZP27C2N) |
 | ☐ | **Wire** (main harness) | 1 roll | Gauge suited to your truck run length | [Amazon](https://www.amazon.com/dp/B0C5T5G2NH) |
-| ☐ | **3D-printed case (v3)** | 1 | **Not code** — [How to download & print the case](docs/PRINT-THE-CASE.md) (do not open the `.step` link as text) | Free in repo |
+| ☐ | **3D-printed case (v3)** | 1 | **You must print it or use a print service** — [How to print](docs/PRINT-THE-CASE.md) · file is free in repo | See [requirements](#requirements-read-this-before-ordering-parts) |
 | ☐ | **2 mm screws** | 4+ | Mount LiDAR to case (length ≈ 6–12 mm for your print) | Hardware store |
 
 **Also pick up (not on Amazon list above)**
@@ -30,7 +74,7 @@ Order or gather these **before** you start building. Check each box when it arri
 | ☐ | **Silicone sealant** (clear outdoor / 100% silicone) | Seal lid gaps and wire exit |
 | ☐ | **Hot glue gun** + sticks | Optional extra sealing / strain relief |
 | ☐ | **Inline fuse** + holder (12 V) | Strongly recommended on truck power |
-| ☐ | Filament (PETG or ASA) | If you print the case yourself |
+| ☐ | Filament (PETG or ASA) | **Only if you print at home** — skip if using a print service |
 
 Full detail and optional items: [Assembly guide §4 — Bill of materials](docs/ASSEMBLY.md#4-bill-of-materials)
 
@@ -44,22 +88,7 @@ That file is a **3D blueprint**, not program code. If GitHub shows a wall of tex
 
 ## What you are making (30 seconds)
 
-A waterproof LiDAR measures distance to your trailer. A **Seeed XIAO ESP32-S3** board sends that distance over **Bluetooth** to your phone. Everything runs from your truck’s **12 V** power, converted to safe **5 V** inside the box. You will **solder wires**, **print a plastic case**, and **plug the board into your computer once** to load the firmware.
-
----
-
-## Before you start — read this honestly
-
-| You will need to… | Notes |
-|-------------------|--------|
-| **Order parts** | [Shopping list above](#parts-to-order-shopping-list) |
-| **3D-print a case** | Free model file included; needs a printer or a print service |
-| **Solder** | Every wire joint is soldered — first time is OK, go slow |
-| **Use a computer once** | Mac or Windows, USB-C cable, internet to install one tool |
-| **Run one command** | Copy-paste from this page; explained below |
-| **Work with 12 V truck power** | Fuse strongly recommended; vehicle off while wiring |
-
-Plan on **a weekend** if you are new to soldering. Stop anytime; pick up at the same step number.
+A waterproof LiDAR measures distance to your trailer. A **Seeed XIAO ESP32-S3** board sends that distance over **Bluetooth** to your phone. Everything runs from your truck’s **12 V** power, converted to safe **5 V** inside a **3D-printed case** you provide (home printer or print service). You will **solder wires** and **plug the board into your computer once** to load the firmware.
 
 ---
 
@@ -92,8 +121,8 @@ Check off each step. **Next** links take you to the right document and section.
 
 | Step | What you do | Open this next |
 |:----:|-------------|----------------|
-| **0** | Understand the project and risks | → [Safety & tools](docs/ASSEMBLY.md#2-safety) |
-| **1** | Buy / gather all parts | → [Shopping list above](#parts-to-order-shopping-list) · [Full BOM](docs/ASSEMBLY.md#4-bill-of-materials) |
+| **0** | Confirm [requirements](#requirements-read-this-before-ordering-parts) & read safety | → [Safety & tools](docs/ASSEMBLY.md#2-safety) |
+| **1** | Buy / gather all parts | → [Shopping list](#parts-to-order-shopping-list) · [Full BOM](docs/ASSEMBLY.md#4-bill-of-materials) |
 | **2** | See what connects to what (read before soldering) | → [Wiring diagram](docs/wiring-diagram.md) |
 | **3** | Print the enclosure | → [**Print the case — start here**](docs/PRINT-THE-CASE.md) (then [assembly §9](docs/ASSEMBLY.md#9-enclosure-assembly-v3-case)) |
 | **4** | Snap on WiFi antenna, then solder the harness | → [Soldering steps](docs/ASSEMBLY.md#7-soldering-the-harness) |

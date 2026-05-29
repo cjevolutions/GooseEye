@@ -1,6 +1,6 @@
 # GooseEye hardware assembly guide
 
-> **Start on GitHub?** Open the [README start-here path](../README.md#the-build-path--follow-in-order) first, then return here for detail.
+> **Start on GitHub?** Read [README requirements](../README.md#requirements-read-this-before-ordering-parts) and the [shopping list](../README.md#parts-to-order-shopping-list) **before** ordering. Then follow the [build path](../README.md#the-build-path--follow-in-order).
 
 This guide walks you through building the GooseEye truck-bed distance sensor from scratch. **You will solder wires** — there are no pre-made harness connectors in the bill of materials. Take your time; bad joints cause intermittent power and UART failures.
 
