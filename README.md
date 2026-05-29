@@ -7,6 +7,7 @@ Open-source **ESP32-S3 firmware and build guide** for the GooseEye truck-bed LiD
 | Document | Description |
 |----------|-------------|
 | [docs/ASSEMBLY.md](docs/ASSEMBLY.md) | Full build guide — parts, soldering, voltages, bench test |
+| [docs/v3 Case.step](docs/v3%20Case.step) | Enclosure CAD (STEP) — LiDAR on 2 mm screws, lid against truck bed |
 | [docs/wiring-diagram.md](docs/wiring-diagram.md) | Wiring tables and diagrams |
 | [docs/ble-protocol.md](docs/ble-protocol.md) | BLE service reference for integrators |
 | [firmware/](firmware/) | PlatformIO project (Seeed XIAO ESP32-S3) |

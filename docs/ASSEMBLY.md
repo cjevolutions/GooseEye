@@ -10,6 +10,8 @@ The companion mobile app is **not** in this repository. This repo is firmware + 
 
 A waterproof Benewake TFmini-class LiDAR talks to a Seeed XIAO ESP32-S3 over UART. The ESP32 advertises distance over Bluetooth Low Energy (BLE) as **GooseEye**. A 12 V → 5 V buck converter powers the board from the truck; a MOSFET module switches LiDAR power off when the firmware sleeps to save energy.
 
+Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step)): the LiDAR bolts on with **2 mm screws**, the buck and MOSFET are fitted loosely inside, and the truck harness exits the **bottom**. The **lid** is the face that mounts **against the truck bed**.
+
 ---
 
 ## 2. Safety
@@ -34,6 +36,8 @@ A waterproof Benewake TFmini-class LiDAR talks to a Seeed XIAO ESP32-S3 over UAR
 | USB-C **data** cable | Flash firmware and serial debug |
 | PC with PlatformIO | Build and upload firmware |
 | Optional: helping hands, flux, isopropyl alcohol | Easier soldering and cleanup |
+| **2 mm** screwdriver or hex driver | LiDAR screws into case |
+| Calipers / CAD viewer | Check printed case against STEP model |
 
 ---
 
@@ -46,15 +50,16 @@ A waterproof Benewake TFmini-class LiDAR talks to a Seeed XIAO ESP32-S3 over UAR
 | DC buck converter (12 V → 5 V) | **One** module; adjust trim to **5.00 V** before load | [Amazon B0F1WB3LJ5](https://www.amazon.com/dp/B0F1WB3LJ5) |
 | MOSFET switch module | High-side LiDAR VCC; control on D1 | [Amazon B0DZP27C2N](https://www.amazon.com/dp/B0DZP27C2N) |
 | Wire | Main harness gauge per your run length | [Amazon B0C5T5G2NH](https://www.amazon.com/dp/B0C5T5G2NH) |
+| Printed enclosure (v3 case) | STEP model in this repo; print or machine from CAD | [`docs/v3 Case.step`](v3%20Case.step) |
+| **2 mm screws** (LiDAR to case) | Fasten LiDAR to enclosure mounting bosses | Length to suit your print (typically 6–12 mm) |
 
 ### Recommended (not in links above)
 
 - Inline **blade fuse holder** + fuse on 12 V
 - **USB-C cable** for development flashing
-- **Enclosure** / strain relief for truck-bed mounting
 - **Ferrules** or crimp connectors for the 12 V tap (if not soldering directly)
 
-Add photos, STL mounts, or fuse part numbers in `docs/images/` or the repo root when you have them.
+Add photos of your finished build in `docs/images/` when you have them.
 
 ---
 
@@ -146,9 +151,60 @@ Do not swap D9 and D10 — distance readings will fail.
    - Connect a phone BLE scanner; see **GooseEye** advertising.
 5. **Sleep test:** disconnect BLE or wait ~2 s without session keep-alive. Serial should log `lidar power off`; multimeter on LiDAR red–black should drop to ~0 V. Reconnect with session `0x01` written to wake.
 
+Flash firmware (Section 9) **before** closing the enclosure if you need USB access to the XIAO.
+
 ---
 
-## 9. Flash firmware
+## 9. Enclosure assembly (v3 case)
+
+The truck-bed housing is provided as a STEP model: **[`docs/v3 Case.step`](v3%20Case.step)**. Import it into your slicer, CAM, or CAD tool to print or machine the case. The model name in the file is **v3 Case**.
+
+### Orientation
+
+| Part | Role |
+|------|------|
+| **Lid** | **Back** of the enclosure — this face mounts **against the truck bed** |
+| **Body** | Front / outer side — LiDAR looks out toward the trailer hookup area |
+| **Bottom opening** | Main vehicle harness (12 V power + any slack) exits here |
+
+```text
+        [ LiDAR window ]
+              |
+    +-------------------+
+    |      BODY         |  ---> toward trailer
+    +-------------------+
+    |       LID         |  ---> flat against truck bed
+    +-------------------+
+              |
+         [ wire exit ]
+```
+
+### LiDAR mounting
+
+1. Seat the LiDAR in the case front so the lens has a clear field of view.
+2. Fasten with **2 mm screws** through the case bosses into the LiDAR mounting holes (do not overtighten into plastic threads).
+3. Confirm the UART and power pigtails still reach the XIAO inside the body with gentle bends — no sharp kinks.
+
+### Internal layout (buck, MOSFET, XIAO)
+
+There are **no fixed mounting points** for the XIAO, buck converter, or MOSFET module in v3 — they are placed inside the body by hand:
+
+- Keep **12 V and 5 V wiring** away from the LiDAR window and UART wires.
+- Avoid metal hardware touching bare converter or module pads.
+- Leave enough slack on the **bottom exit** harness to service the unit without desoldering.
+- Optional: secure loose boards with foam, zip ties to internal ribs, or double-sided tape on flat areas — do not block ventilation or the lid seal.
+
+Route the soldered harness so the **main wire exits through the bottom** of the case before installing the lid.
+
+### Lid install
+
+1. Tuck electronics so nothing interferes with the lid perimeter.
+2. Close the **lid** (truck-bed side) and fasten per your print design (screws, clips, or sealant — follow whatever features are in your manufactured part).
+3. Mount the assembly to the bed with the **lid against the truck** and the LiDAR facing the trailer.
+
+---
+
+## 10. Flash firmware
 
 ### Install PlatformIO
 
@@ -190,7 +246,7 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 
 ---
 
-## 10. Verify BLE
+## 11. Verify BLE
 
 1. Install **nRF Connect** (iOS/Android) or **LightBlue**.
 2. Scan and connect to **GooseEye**.
@@ -200,17 +256,17 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 
 ---
 
-## 11. Truck installation
+## 12. Truck installation
 
-1. Secure the buck and MOSFET so they cannot short against metal.
-2. Route the LiDAR cable away from exhaust and moving parts.
-3. Mount the LiDAR with a clear line of sight toward the trailer target area.
-4. Strain-relief the 12 V tap and all solder joints.
-5. Re-check 5 V under load with the engine on (alternator may raise rail voltage).
+1. Mount the **lid (back) flush against the truck bed**; the LiDAR window should face the trailer hitch area with clear line of sight.
+2. Strain-relief the harness where it exits the **bottom** of the case and at the 12 V tap.
+3. Route wiring away from exhaust, heat, and moving parts.
+4. Re-check **5 V** under load with the engine on (alternator may raise rail voltage).
+5. After sealing the case, firmware updates require USB access to the XIAO — plan ahead or open the enclosure.
 
 ---
 
-## 12. Troubleshooting
+## 13. Troubleshooting
 
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
@@ -235,7 +291,7 @@ Rebuild and reflash.
 
 ---
 
-## 13. Firmware pin reference
+## 14. Firmware pin reference
 
 | XIAO label | GPIO | Function |
 |------------|------|----------|
@@ -248,8 +304,8 @@ Firmware version is in `firmware/platformio.ini` (`FIRMWARE_VERSION_*`).
 
 ---
 
-## 14. Next steps
+## 15. Next steps
 
-- Add enclosure photos and mount templates to this repo.
+- Add photos of your printed case and bed mount to `docs/images/`.
 - Integrate with the GooseEye mobile app (distributed separately).
 - Report hardware issues on the project GitHub tracker.
