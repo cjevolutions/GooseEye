@@ -18,7 +18,7 @@ The companion mobile app is **not** in this repository. This repo is firmware + 
 | 6 | Wiring overview | [§6](#6-wiring-overview) → [full diagram](wiring-diagram.md) |
 | 7 | Soldering | [§7](#7-soldering-the-harness) |
 | 8 | Bench test | [§8](#8-bench-test-before-truck-install) |
-| 9 | 3D print & case | [§9](#9-enclosure-assembly-v3-case) |
+| 9 | 3D print & case | [Print guide](PRINT-THE-CASE.md) · [§9](#9-enclosure-assembly-v3-case) |
 | 10 | Flash firmware | [§10](#10-flash-firmware) |
 | 11 | Test Bluetooth | [§11](#11-verify-ble) |
 | 12 | Truck install | [§12](#12-truck-installation) |
@@ -78,7 +78,7 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 | DC buck converter (12 V → 5 V) | **One** module; adjust trim to **5.00 V** before load | [Amazon B0F1WB3LJ5](https://www.amazon.com/dp/B0F1WB3LJ5) |
 | MOSFET switch module | High-side LiDAR VCC; control on D1 | [Amazon B0DZP27C2N](https://www.amazon.com/dp/B0DZP27C2N) |
 | Wire | Main harness gauge per your run length | [Amazon B0C5T5G2NH](https://www.amazon.com/dp/B0C5T5G2NH) |
-| Printed enclosure (v3 case) | STEP model in this repo; print or machine from CAD | [`docs/v3 Case.step`](v3%20Case.step) |
+| Printed enclosure (v3 case) | **[How to print](PRINT-THE-CASE.md)** — do not open `.step` as text on GitHub | [`v3 Case.step`](v3%20Case.step) · [direct download](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step) |
 | **2 mm screws** (LiDAR to case) | Fasten LiDAR to enclosure mounting bosses | Length to suit your print (typically 6–12 mm) |
 
 ### Recommended (not in links above)
@@ -211,15 +211,22 @@ Flash firmware (Section 10) **before** closing the enclosure if you need USB acc
 
 ## 9. Enclosure assembly (v3 case)
 
-The truck-bed housing is provided as a STEP model: **[`docs/v3 Case.step`](v3%20Case.step)** (model name **v3 Case**).
+The truck-bed housing is a 3D-printed part from file **`v3 Case.step`**.
+
+> **Clicked the file on GitHub and saw pages of text?** That is normal — it is not broken and you do not read that code. Follow **[PRINT-THE-CASE.md](PRINT-THE-CASE.md)** to download the file and open it in a **slicer** (printer software).
 
 ### 3D printing the case
 
-1. Open your slicer (PrusaSlicer, Bambu Studio, Cura, etc.).
-2. **Drag `v3 Case.step` into the slicer window** (or use File → Import). Most slicers accept STEP directly; if yours does not, open the file in a CAD tool and export STL first.
-3. **Print orientation:** place the case so the **opening faces down onto the build plate** (bottom/wire-exit opening on the plate, LiDAR end pointing up). This minimizes overhangs on the rim and gives a flat, strong base for the lid seat.
-4. Use your normal filament settings for an outdoor truck-bed part (e.g. PETG or ASA for heat and UV). Add brim or arachne on the opening lip if your slicer shows curling.
-5. Remove supports, deburr the LiDAR screw bosses and wire exit, then dry-fit the LiDAR before soldering the harness.
+**Full walkthrough (download, slicer, print service):** **[docs/PRINT-THE-CASE.md](PRINT-THE-CASE.md)**
+
+Short version:
+
+1. **Download** `v3 Case.step` to your computer ([ZIP from GitHub](../README.md#new-to-github-you-only-need-the-files) or [direct download](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step)) — do not edit the text in a browser.
+2. Open **PrusaSlicer**, **Bambu Studio**, **Cura**, or similar.
+3. **Drag `v3 Case.step` into the slicer** — you should see a 3D box, not text.
+4. **Print orientation:** **opening faces down on the build plate** (wire exit down, LiDAR end up).
+5. Material: **PETG** or **ASA** for outdoor use. Slice, print, deburr screw bosses and wire exit.
+6. Dry-fit the LiDAR before soldering the harness.
 
 ### Orientation (installed on the truck)
 

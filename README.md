@@ -17,7 +17,7 @@ Order or gather these **before** you start building. Check each box when it arri
 | ☐ | **DC buck converter** (12 V → 5 V) | 1 | Adjust to **5.00 V** output; one unit powers everything | [Amazon](https://www.amazon.com/dp/B0F1WB3LJ5) |
 | ☐ | **MOSFET switch module** | 1 | Switches LiDAR power for sleep mode | [Amazon](https://www.amazon.com/dp/B0DZP27C2N) |
 | ☐ | **Wire** (main harness) | 1 roll | Gauge suited to your truck run length | [Amazon](https://www.amazon.com/dp/B0C5T5G2NH) |
-| ☐ | **3D-printed case (v3)** | 1 | Free file: [`docs/v3 Case.step`](docs/v3%20Case.step) — print yourself or use a print service | In this repo |
+| ☐ | **3D-printed case (v3)** | 1 | **Not code** — [How to download & print the case](docs/PRINT-THE-CASE.md) (do not open the `.step` link as text) | Free in repo |
 | ☐ | **2 mm screws** | 4+ | Mount LiDAR to case (length ≈ 6–12 mm for your print) | Hardware store |
 
 **Also pick up (not on Amazon list above)**
@@ -35,6 +35,10 @@ Order or gather these **before** you start building. Check each box when it arri
 Full detail and optional items: [Assembly guide §4 — Bill of materials](docs/ASSEMBLY.md#4-bill-of-materials)
 
 **When parts arrive →** start the [build path](#the-build-path--follow-in-order) at step **0**.
+
+### About the case file (`v3 Case.step`)
+
+That file is a **3D blueprint**, not program code. If GitHub shows a wall of text, **close the tab** and open **[How to print the case](docs/PRINT-THE-CASE.md)** — it explains download, slicer, and print orientation in plain language.
 
 ---
 
@@ -91,7 +95,7 @@ Check off each step. **Next** links take you to the right document and section.
 | **0** | Understand the project and risks | → [Safety & tools](docs/ASSEMBLY.md#2-safety) |
 | **1** | Buy / gather all parts | → [Shopping list above](#parts-to-order-shopping-list) · [Full BOM](docs/ASSEMBLY.md#4-bill-of-materials) |
 | **2** | See what connects to what (read before soldering) | → [Wiring diagram](docs/wiring-diagram.md) |
-| **3** | Print the enclosure | → [Print the v3 case](docs/ASSEMBLY.md#3d-printing-the-case) |
+| **3** | Print the enclosure | → [**Print the case — start here**](docs/PRINT-THE-CASE.md) (then [assembly §9](docs/ASSEMBLY.md#9-enclosure-assembly-v3-case)) |
 | **4** | Snap on WiFi antenna, then solder the harness | → [Soldering steps](docs/ASSEMBLY.md#7-soldering-the-harness) |
 | **5** | Power on at the bench (no truck install yet) | → [Bench test](docs/ASSEMBLY.md#8-bench-test-before-truck-install) |
 | **6** | Install the flash tool on your computer | → [Install PlatformIO](docs/ASSEMBLY.md#install-platformio) |
@@ -243,7 +247,8 @@ pio run -t upload --upload-port COM5
 |----------|----------------|
 | [docs/ASSEMBLY.md](docs/ASSEMBLY.md) | Main build manual (all steps) |
 | [docs/wiring-diagram.md](docs/wiring-diagram.md) | While soldering |
-| [docs/v3 Case.step](docs/v3%20Case.step) | 3D print the enclosure |
+| [docs/PRINT-THE-CASE.md](docs/PRINT-THE-CASE.md) | **How to use the case file** (download, slicer, orientation) |
+| [docs/v3 Case.step](docs/v3%20Case.step) | 3D model only — [download raw file](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step) (use the guide if you see “code”) |
 | [docs/ble-protocol.md](docs/ble-protocol.md) | Only if you integrate without the official app |
 | [firmware/](firmware/) | Source code (you do not need to edit this) |
 
