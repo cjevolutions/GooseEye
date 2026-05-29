@@ -71,21 +71,29 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 
 ## 4. Bill of materials
 
-| Part | Notes | Link |
-|------|-------|------|
-| Benewake waterproof TFmini LiDAR | TFmini-S / Plus class; 4-wire UART | [Amazon B08D3D63QZ](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
-| Seeed XIAO ESP32-S3 | 2.4 GHz, USB-C; includes **U.FL WiFi antenna** | [Amazon B0BYSB66S5](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
-| DC buck converter (12 V → 5 V) | **One** module; adjust trim to **5.00 V** before load | [Amazon B0F1WB3LJ5](https://www.amazon.com/dp/B0F1WB3LJ5) |
-| MOSFET switch module | High-side LiDAR VCC; control on D1 | [Amazon B0DZP27C2N](https://www.amazon.com/dp/B0DZP27C2N) |
-| Wire | Main harness gauge per your run length | [Amazon B0C5T5G2NH](https://www.amazon.com/dp/B0C5T5G2NH) |
-| Printed enclosure (v3 case) | **[How to print](PRINT-THE-CASE.md)** — do not open `.step` as text on GitHub | [`v3 Case.step`](v3%20Case.step) · [direct download](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step) |
-| **2 mm screws** (LiDAR to case) | Fasten LiDAR to enclosure mounting bosses | Length to suit your print (typically 6–12 mm) |
+| Part | Notes | Where to buy |
+|------|-------|--------------|
+| Benewake waterproof TFmini LiDAR | TFmini-S / Plus class; 4-wire UART | [**Amazon →**](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
+| Seeed XIAO ESP32-S3 | 2.4 GHz, USB-C; includes **U.FL WiFi antenna** | [**Amazon →**](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
+| DC buck converter (12 V → 5 V) | **One** module; adjust trim to **5.00 V** before load | [**Amazon →**](https://www.amazon.com/dp/B0F1WB3LJ5) |
+| MOSFET switch module | High-side LiDAR VCC; control on D1 | [**Amazon →**](https://www.amazon.com/dp/B0DZP27C2N) |
+| Wire | Main harness gauge per your run length | [**Amazon →**](https://www.amazon.com/dp/B0C5T5G2NH) |
+| Printed enclosure (v3 case) | Print or use a service — [PRINT-THE-CASE.md](PRINT-THE-CASE.md) | [**Download STEP**](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step) |
+| **2 mm screws** (LiDAR to case) | Typically 6–12 mm length for your print | [**Amazon search →**](https://www.amazon.com/s?k=m2+screw+kit) |
 
-### Recommended (not in links above)
+Same list with checkboxes: [README shopping list](../README.md#parts-to-order-shopping-list).
 
-- Inline **blade fuse holder** + fuse on 12 V
-- **USB-C cable** for development flashing
-- **Ferrules** or crimp connectors for the 12 V tap (if not soldering directly)
+### Recommended (with buy links)
+
+| Item | Where to buy |
+|------|--------------|
+| Inline **blade fuse** + holder on 12 V | [**Amazon search →**](https://www.amazon.com/s?k=12v+blade+fuse+holder+inline) |
+| **USB-C data cable** (flash firmware) | [**Amazon search →**](https://www.amazon.com/s?k=usb-c+data+cable) |
+| Soldering iron, solder, heat-shrink | [**Amazon (kit example) →**](https://www.amazon.com/s?k=soldering+iron+kit) |
+| Silicone sealant + optional hot glue | [**Silicone →**](https://www.amazon.com/s?k=clear+silicone+sealant+outdoor) · [**Hot glue →**](https://www.amazon.com/s?k=hot+glue+gun) |
+| **PETG/ASA filament** (if printing case) | [**PETG example →**](https://www.amazon.com/s?k=petg+filament+1.75) |
+| **Print service** (no home printer) | [Craftcloud](https://craftcloud3d.com/) |
+| Ferrules for 12 V tap (optional) | [**Amazon search →**](https://www.amazon.com/s?k=wire+ferrule+kit) |
 
 Add photos of your finished build in `docs/images/` when you have them.
 

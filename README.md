@@ -54,27 +54,28 @@ If you cannot check off every **must have** row, finish that gap first or this b
 
 Order these **after** the [requirements](#requirements-read-this-before-ordering-parts) above make sense for you. Check each box when it arrives.
 
-| | Part | Qty | Notes |
-|---|------|:---:|-------|
-| ☐ | **Benewake waterproof TFmini LiDAR** | 1 | 4-wire UART rangefinder | [Amazon](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
-| ☐ | **Seeed XIAO ESP32-S3** | 1 | Includes snap-on **U.FL WiFi antenna** | [Amazon](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
-| ☐ | **DC buck converter** (12 V → 5 V) | 1 | Adjust to **5.00 V** output; one unit powers everything | [Amazon](https://www.amazon.com/dp/B0F1WB3LJ5) |
-| ☐ | **MOSFET switch module** | 1 | Switches LiDAR power for sleep mode | [Amazon](https://www.amazon.com/dp/B0DZP27C2N) |
-| ☐ | **Wire** (main harness) | 1 roll | Gauge suited to your truck run length | [Amazon](https://www.amazon.com/dp/B0C5T5G2NH) |
-| ☐ | **3D-printed case (v3)** | 1 | **You must print it or use a print service** — [How to print](docs/PRINT-THE-CASE.md) · file is free in repo | See [requirements](#requirements-read-this-before-ordering-parts) |
-| ☐ | **2 mm screws** | 4+ | Mount LiDAR to case (length ≈ 6–12 mm for your print) | Hardware store |
+| | Part | Qty | Notes | Where to buy |
+|---|------|:---:|-------|--------------|
+| ☐ | Benewake waterproof TFmini LiDAR | 1 | 4-wire UART rangefinder | [**Amazon →**](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
+| ☐ | Seeed XIAO ESP32-S3 | 1 | Includes snap-on **U.FL WiFi antenna** | [**Amazon →**](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
+| ☐ | DC buck converter (12 V → 5 V) | 1 | Adjust trim to **5.00 V** before load | [**Amazon →**](https://www.amazon.com/dp/B0F1WB3LJ5) |
+| ☐ | MOSFET switch module | 1 | Switches LiDAR power in sleep mode | [**Amazon →**](https://www.amazon.com/dp/B0DZP27C2N) |
+| ☐ | Wire (main harness) | 1 roll | Match gauge to your truck run length | [**Amazon →**](https://www.amazon.com/dp/B0C5T5G2NH) |
+| ☐ | 3D-printed case (v3) | 1 | Print at home **or** use a print service — not sold on Amazon | [**How to print**](docs/PRINT-THE-CASE.md) · [**Download file**](https://github.com/cjevolutions/GooseEye/raw/main/docs/v3%20Case.step) |
+| ☐ | 2 mm screws (LiDAR to case) | 4+ | Length ≈ 6–12 mm for your print | [**Amazon (example pack) →**](https://www.amazon.com/s?k=m2+screw+kit) · hardware store |
 
-**Also pick up (not on Amazon list above)**
+**Also pick up** (soldering, sealing, truck install)
 
-| | Item | Why |
-|---|------|-----|
-| ☐ | Solder, soldering iron, heat-shrink | Wire joints — [tools list](docs/ASSEMBLY.md#3-tools-and-supplies) |
-| ☐ | **USB-C data cable** | Flash firmware (not charge-only) |
-| ☐ | **Multimeter** | Verify 5 V before you power the boards |
-| ☐ | **Silicone sealant** (clear outdoor / 100% silicone) | Seal lid gaps and wire exit |
-| ☐ | **Hot glue gun** + sticks | Optional extra sealing / strain relief |
-| ☐ | **Inline fuse** + holder (12 V) | Strongly recommended on truck power |
-| ☐ | Filament (PETG or ASA) | **Only if you print at home** — skip if using a print service |
+| | Item | Why | Where to buy |
+|---|------|-----|--------------|
+| ☐ | Soldering iron + solder + heat-shrink | Wire joints | [**Amazon (kit example) →**](https://www.amazon.com/s?k=soldering+iron+kit) · [tool details](docs/ASSEMBLY.md#3-tools-and-supplies) |
+| ☐ | USB-C **data** cable | Flash firmware — not charge-only | [**Amazon (USB-C data cable) →**](https://www.amazon.com/s?k=usb-c+data+cable) |
+| ☐ | Multimeter | Check 5 V before powering boards | [**Amazon →**](https://www.amazon.com/s?k=digital+multimeter) |
+| ☐ | Silicone sealant (100% silicone, clear outdoor) | Seal lid + wire exit | [**Amazon →**](https://www.amazon.com/s?k=clear+silicone+sealant+outdoor) |
+| ☐ | Hot glue gun + glue sticks | Optional extra sealing | [**Amazon →**](https://www.amazon.com/s?k=hot+glue+gun) |
+| ☐ | Inline blade fuse + holder (12 V) | Strongly recommended | [**Amazon →**](https://www.amazon.com/s?k=12v+blade+fuse+holder+inline) |
+| ☐ | PETG or ASA filament | **Only if you print the case at home** | [**Amazon (PETG example) →**](https://www.amazon.com/s?k=petg+filament+1.75) |
+| ☐ | Online 3D print service | **If you do not own a printer** | [Craftcloud](https://craftcloud3d.com/) · [Shapeways](https://www.shapeways.com/) |
 
 Full detail and optional items: [Assembly guide §4 — Bill of materials](docs/ASSEMBLY.md#4-bill-of-materials)
 
