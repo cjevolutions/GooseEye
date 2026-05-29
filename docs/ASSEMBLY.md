@@ -46,7 +46,7 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 | Part | Notes | Link |
 |------|-------|------|
 | Benewake waterproof TFmini LiDAR | TFmini-S / Plus class; 4-wire UART | [Amazon B08D3D63QZ](https://www.amazon.com/Benewake-Distance-Waterproof-Anti-dust-Raspberry/dp/B08D3D63QZ) |
-| Seeed XIAO ESP32-S3 | 2.4 GHz, USB-C | [Amazon B0BYSB66S5](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
+| Seeed XIAO ESP32-S3 | 2.4 GHz, USB-C; includes **U.FL WiFi antenna** | [Amazon B0BYSB66S5](https://www.amazon.com/ESP32S3-2-4GHz-Dual-core-Supported-Efficiency-Interface/dp/B0BYSB66S5) |
 | DC buck converter (12 V → 5 V) | **One** module; adjust trim to **5.00 V** before load | [Amazon B0F1WB3LJ5](https://www.amazon.com/dp/B0F1WB3LJ5) |
 | MOSFET switch module | High-side LiDAR VCC; control on D1 | [Amazon B0DZP27C2N](https://www.amazon.com/dp/B0DZP27C2N) |
 | Wire | Main harness gauge per your run length | [Amazon B0C5T5G2NH](https://www.amazon.com/dp/B0C5T5G2NH) |
@@ -94,6 +94,18 @@ Summary:
 ## 7. Soldering the harness
 
 **You must solder** every connection below. Use heat shrink on each joint.
+
+### Step 7.0 — XIAO WiFi antenna (before wiring)
+
+The XIAO ESP32-S3 ships with a small **U.FL antenna** on a short coax pigtail. BLE range is poor without it — install it on the board **before** you solder power wires or stuff the board into the case.
+
+1. Find the tiny **U.FL / IPEX** RF connector on the edge of the XIAO (metal snap fitting, smaller than a grain of rice).
+2. Align the antenna connector squarely on top of the board connector.
+3. **Press straight down** until it **snaps** into place. It is normal for this to feel **firm and a bit resistant** — use steady pressure with your fingernail or a plastic spudger, not sideways force.
+4. Confirm both connectors are fully seated (no gap, antenna cable can move but the joint does not twist off easily).
+5. Route the antenna **away from the LiDAR UART wires and buck wiring** so nothing yanks the U.FL joint when you close the case. Let the antenna sit loosely inside the body — do not kink or crush the cable.
+
+**Do not** power the board with a metal tool touching the U.FL contact. If the connector does not snap after several tries, check alignment; forcing it at an angle can damage the port.
 
 ### Step 7.1 — Prepare wires
 
@@ -201,6 +213,7 @@ The truck-bed housing is provided as a STEP model: **[`docs/v3 Case.step`](v3%20
 
 There are **no fixed mounting points** for the XIAO, buck converter, or MOSFET module in v3 — they are placed inside the body by hand:
 
+- Confirm the **U.FL WiFi antenna** is snapped on and the cable is not pinched by the lid.
 - Keep **12 V and 5 V wiring** away from the LiDAR window and UART wires.
 - Avoid metal hardware touching bare converter or module pads.
 - Leave enough slack on the **bottom exit** harness to service the unit without desoldering.
@@ -284,7 +297,8 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 |---------|--------------|-----|
 | No USB port for flash | Charge-only cable | Use data-capable USB-C |
 | Upload fails | Wrong port / not in bootloader | Set `UPLOAD_PORT`; double-tap RESET |
-| No BLE advertisement | Bad flash, power | Reflash; check 5 V on XIAO |
+| No BLE advertisement | Bad flash, power, missing antenna | Reflash; check 5 V; snap U.FL antenna onto RF port |
+| BLE very weak / drops at short range | Antenna not seated or crushed in case | Reseat U.FL connector; reroute antenna cable |
 | BLE connects, no distance | Sleep mode, no session | Write `0x01` to Session char |
 | Distance always invalid | D9/D10 swapped | Swap white/green UART |
 | LiDAR always off | D1 wrong; active-low module | Rewire D1; rebuild with inverted flag (below) |

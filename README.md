@@ -14,7 +14,7 @@ Open-source **ESP32-S3 firmware and build guide** for the GooseEye truck-bed LiD
 
 ## You will need to solder
 
-All harness connections between the buck converter, MOSFET module, XIAO, and LiDAR are soldered joints (plus heat shrink). There are no plug-and-play connectors in the BOM. See the assembly guide for step-by-step instructions.
+All harness connections between the buck converter, MOSFET module, XIAO, and LiDAR are soldered joints (plus heat shrink). You also **press the included U.FL WiFi antenna** onto the XIAO RF port (firm snap). See the assembly guide for step-by-step instructions.
 
 ## Flash firmware
 
