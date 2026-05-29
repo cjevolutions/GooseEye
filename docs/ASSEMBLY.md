@@ -61,6 +61,8 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 | PC with PlatformIO | Build and upload firmware |
 | Optional: helping hands, flux, isopropyl alcohol | Easier soldering and cleanup |
 | **2 mm** screwdriver or hex driver | LiDAR screws into case |
+| **Silicone sealant** (clear outdoor / RV / aquarium-grade) | Seal lid gaps, wire exit, and print layer lines |
+| **Hot glue gun** + glue sticks | Optional: tack wires, fill small gaps, backup seal |
 | Calipers / CAD viewer | Check printed case against STEP model |
 
 **Next:** [§4 Parts list (order these) →](#4-bill-of-materials)
@@ -257,11 +259,33 @@ There are **no fixed mounting points** for the XIAO, buck converter, or MOSFET m
 
 Route the soldered harness so the **main wire exits through the bottom** of the case before installing the lid.
 
+### Weather sealing (silicone and/or hot glue)
+
+The printed case will have **small gaps** at the lid seam, layer lines, and where the main wire exits the bottom. Truck-bed use means rain, spray, and dust — seal these **after** you have bench-tested and flashed the firmware (so you can still open the unit if something is wrong).
+
+| Material | Good for | Avoid |
+|----------|----------|--------|
+| **Silicone sealant** (clear, neutral-cure / “100% silicone”) | Lid perimeter, wire-exit grommet area, LiDAR window rim if there is a gap | Do not cover the LiDAR lens; do not seal the USB port if you still need access |
+| **Hot glue gun** | Tacking the harness inside, filling pinholes, extra seal at wire exit | High heat near bare boards — glue **around** wires, not on chips |
+
+**Suggested order**
+
+1. Dry-fit the lid and mark where gaps are visible.
+2. **Wire exit (bottom):** run a bead of **silicone** where the harness passes out — fill the gap but leave the wires movable for strain relief (don’t encapsulate 30 cm of cable).
+3. **Lid seam:** with the lid seated, apply a thin **silicone** bead along the outside seam (truck-bed side and sides). Smooth with a gloved finger or tool. Wipe excess before it cures.
+4. **Optional hot glue:** inside the case, blob glue where the wire bundle passes through the wall (from the inside) as a mechanical backup — not a substitute for silicone on the outside.
+5. **Small print defects:** dot **silicone** or **hot glue** into pinholes or layer gaps that would let water in; keep glue away from the LiDAR aperture and antenna.
+
+Let **silicone cure fully** per tube directions (often 24 hours) before mounting in the truck or blasting with a hose. Hot glue sets in minutes but is less durable long-term — treat it as backup unless you have no silicone.
+
+**Do not** fill the entire case with glue or silicone; electronics must stay dry inside, and you may need to open the case later for USB service.
+
 ### Lid install
 
 1. Tuck electronics so nothing interferes with the lid perimeter.
 2. Close the **lid** (truck-bed side) and fasten per your print design (screws, clips, or sealant — follow whatever features are in your manufactured part).
-3. Mount the assembly to the bed with the **lid against the truck** and the LiDAR facing the trailer.
+3. Apply **silicone and/or hot glue** at gaps per [Weather sealing](#weather-sealing-silicone-andor-hot-glue) above.
+4. Mount the assembly to the bed with the **lid against the truck** and the LiDAR facing the trailer.
 
 **Next:** [§10 Flash firmware →](#10-flash-firmware) (if not done yet) · [README script help →](../README.md#running-the-flash-script-first-timers)
 
@@ -349,11 +373,12 @@ If upload fails: double-tap the XIAO **RESET** button quickly; the board enters 
 
 ## 12. Truck installation
 
-1. Mount the **lid (back) flush against the truck bed**; the LiDAR window should face the trailer hitch area with clear line of sight.
-2. Strain-relief the harness where it exits the **bottom** of the case and at the 12 V tap.
-3. Route wiring away from exhaust, heat, and moving parts.
-4. Re-check **5 V** under load with the engine on (alternator may raise rail voltage).
-5. After sealing the case, firmware updates require USB access to the XIAO — plan ahead or open the enclosure.
+1. Confirm **silicone has cured** and seals at the lid and wire exit are intact (see [weather sealing](#weather-sealing-silicone-andor-hot-glue)).
+2. Mount the **lid (back) flush against the truck bed**; the LiDAR window should face the trailer hitch area with clear line of sight.
+3. Strain-relief the harness where it exits the **bottom** of the case and at the 12 V tap.
+4. Route wiring away from exhaust, heat, and moving parts.
+5. Re-check **5 V** under load with the engine on (alternator may raise rail voltage).
+6. After sealing the case, firmware updates require USB access to the XIAO — plan ahead or open the enclosure.
 
 **Next:** [§13 Troubleshooting →](#13-troubleshooting) · [Back to README start →](../README.md)
 

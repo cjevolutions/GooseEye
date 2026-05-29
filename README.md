@@ -118,7 +118,7 @@ You are **loading a program** onto the XIAO so it can speak Bluetooth. You are n
 
 ### Steps 9–10 → Case and truck
 
-**[Enclosure assembly](docs/ASSEMBLY.md#9-enclosure-assembly-v3-case)** — LiDAR on **2 mm screws**, electronics inside, lid against the truck bed, wire out the bottom.
+**[Enclosure assembly](docs/ASSEMBLY.md#9-enclosure-assembly-v3-case)** — LiDAR on **2 mm screws**, electronics inside, lid against the truck bed, wire out the bottom. Then **[seal gaps with silicone and/or a hot glue gun](docs/ASSEMBLY.md#weather-sealing-silicone-andor-hot-glue)** (lid seam, wire exit, pinholes) before the truck gets wet.
 
 **[Truck installation](docs/ASSEMBLY.md#12-truck-installation)** — fuse, strain relief, clear line of sight to the trailer.
 
