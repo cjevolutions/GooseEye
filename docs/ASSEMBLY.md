@@ -20,7 +20,7 @@ Electronics live inside the **v3 printed case** ([`v3 Case.step`](v3%20Case.step
 - Work with the vehicle **off** or the circuit **unplugged** while soldering and doing first power-up on the bench.
 - The LiDAR is a Class 1 eye-safe laser product when used as specified; do not stare into the aperture at close range.
 - **ESD:** touch a grounded metal surface before handling the XIAO or LiDAR PCB.
-- **5 V only** on the XIAO `5V` pin and LiDAR VCC. **Never connect 12 V** to the ESP32 or sensor.
+- **5 V only** on the XIAO power pad and LiDAR VCC. **Never connect 12 V** to the ESP32 or sensor.
 
 ---
 
@@ -69,7 +69,7 @@ Add photos of your finished build in `docs/images/` when you have them.
 |------|---------|-------|
 | Vehicle input | 12 V DC (9–16 V typical) | Accessory circuit or battery; fused |
 | Buck output | **5.0 V** | Adjust with no/minimal load, then recheck under load |
-| XIAO | 5 V on `5V` pin | Do not use 3.3 V pin for power |
+| XIAO | 5 V on **5V / VBUS** pad (see below) | Do not power from **3V3** — that is output only |
 | TFmini VCC | 4.5–6 V | Fed from MOSFET switched 5 V |
 | XIAO / LiDAR logic UART | 3.3 V tolerant | XIAO IO is 3.3 V; TFmini UART is 3.3 V CMOS |
 
@@ -83,7 +83,7 @@ See [wiring-diagram.md](wiring-diagram.md) for diagrams and tables.
 
 Summary:
 
-- **One buck:** 12 V in → 5 V out → XIAO `5V` + MOSFET high-side input.
+- **One buck:** 12 V in → 5 V out → XIAO **5V / VBUS** pad + MOSFET high-side input.
 - **Shared ground:** buck, XIAO, MOSFET, LiDAR black.
 - **LiDAR red** only to MOSFET switched output (not direct to buck).
 - **UART:** XIAO D9 → white, D10 ← green.
@@ -111,8 +111,12 @@ Summary:
 
 ### Step 7.3 — XIAO power
 
-1. Solder buck 5 V+ → XIAO **`5V`** pad.
+On the Seeed XIAO ESP32-S3, the **5 V input pad is not always silkscreened as “5V”**. Look for **`5V`**, **`VBUS`**, or similar wording on the pin next to **`GND`** (same rail as USB-C 5 V). Do **not** wire the buck to **`3V3`** — that pin is regulated **output** only.
+
+1. Solder buck 5 V+ → XIAO **5V / VBUS** pad.
 2. Solder buck GND → XIAO **`GND`** pad.
+
+If you will have **both** USB-C and the buck connected at once while bench-testing, Seeed recommends a **Schottky diode** from the buck (+) to this pad (anode toward buck, cathode toward the board) so the buck cannot back-feed the USB port. For truck install with USB unplugged, many builds omit the diode.
 
 ### Step 7.4 — MOSFET module
 
@@ -147,7 +151,7 @@ Do not swap D9 and D10 — distance readings will fail.
    - `[GooseEye] boot`
    - `[GooseEye] advertising as GooseEye`
 4. With 12 V bench power to the buck (LiDAR wired):
-   - Measure **~5 V** on XIAO `5V`–`GND`.
+   - Measure **~5 V** between the XIAO **5V / VBUS** pad and **`GND`**.
    - Connect a phone BLE scanner; see **GooseEye** advertising.
 5. **Sleep test:** disconnect BLE or wait ~2 s without session keep-alive. Serial should log `lidar power off`; multimeter on LiDAR red–black should drop to ~0 V. Reconnect with session `0x01` written to wake.
 
@@ -306,7 +310,7 @@ Rebuild and reflash.
 | D9 | 8 | UART TX → LiDAR RX |
 | D10 | 9 | UART RX ← LiDAR TX |
 | D1 | 2 | LiDAR power MOSFET control |
-| 5V / GND | — | 5 V power (not 12 V) |
+| 5V / VBUS + GND | — | 5 V power in (not 12 V; not 3V3) |
 
 Firmware version is in `firmware/platformio.ini` (`FIRMWARE_VERSION_*`).
 

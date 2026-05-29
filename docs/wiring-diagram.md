@@ -14,7 +14,7 @@ flowchart TB
   end
 
   subgraph esp [XIAO ESP32-S3]
-    X5V[5V pin]
+    X5V["5V / VBUS pad"]
     XGND[GND]
     D9[D9 UART TX]
     D10[D10 UART RX]
@@ -53,7 +53,7 @@ flowchart TB
 |------|-----|-------------------|
 | Vehicle 12 V+ (fused) | Buck `IN+` / `VIN+` | Red (main harness) |
 | Vehicle 12 V− / chassis | Buck `IN−` / `GND` | Black |
-| Buck 5 V output + | XIAO `5V` | |
+| Buck 5 V output + | XIAO **5V / VBUS** (USB 5 V rail; not `3V3`) | |
 | Buck 5 V output + | MOSFET `VIN+` / `DC+` | High-side input |
 | Buck GND | XIAO `GND` | |
 | Buck GND | MOSFET `GND` / `DC−` | |
@@ -91,7 +91,7 @@ Amazon and clone boards use different silkscreen text. Match function, not exact
   12V ----[FUSE]----> BUCK IN+
   GND ---------------> BUCK IN-
 
-  BUCK 5V+ -----+----> XIAO 5V
+  BUCK 5V+ -----+----> XIAO 5V / VBUS
                  |
                  +----> MOSFET VIN+
   BUCK GND ------+----> XIAO GND
@@ -107,6 +107,6 @@ Amazon and clone boards use different silkscreen text. Match function, not exact
 
 ## Important notes
 
-- **Never apply 12 V to the XIAO or LiDAR.** Only 5 V regulated.
+- **Never apply 12 V to the XIAO or LiDAR.** Only 5 V regulated on **5V / VBUS** (not **3V3**).
 - UART lines stay connected while the LiDAR is unpowered; firmware cuts VCC via the MOSFET in sleep mode.
 - If LiDAR never powers on but UART works, check D1 wiring and whether your module is active-low (see troubleshooting in [ASSEMBLY.md](ASSEMBLY.md)).

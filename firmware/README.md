@@ -8,7 +8,7 @@ Hardware assembly and wiring: see the [GooseEye hardware repo](https://github.co
 
 | XIAO pin | GPIO | Connection |
 |----------|------|------------|
-| 5V | — | Buck 5 V (not 12 V) |
+| 5V / VBUS | — | Buck 5 V (USB rail; silkscreen may say VBUS — not 3V3) |
 | GND | — | Common ground with buck, LiDAR, MOSFET |
 | D9 | 8 | TFmini white (RX) — ESP UART TX |
 | D10 | 9 | TFmini green (TX) — ESP UART RX |
